@@ -18,10 +18,23 @@ namespace CSharpStudyingApp
             get { return _y; }
         }
 
+        public Point()
+        {
+            _x = 0.0m;
+            _y = 0.0m;
+        }
+
         public Point (decimal x, decimal y)
         {
             _x = x;
             _y = y;
+        }
+
+        //Copy constructor
+        public Point(Point point)
+        {
+            _x = point.X;
+            _y = point.Y;
         }
 
         public static Point operator +(Point p1, Point p2)
