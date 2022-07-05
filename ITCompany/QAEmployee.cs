@@ -6,16 +6,16 @@ namespace ITCompany
 {
     class QAEmployee : Employee
     {
-        public string BugTrackingTools { get; set; }
+        public string BugTrackingTool { get; set; }
 
-        public QAEmployee(string fName, string lName, int age, int salary, string bugTrackingTools) : base(fName, lName, age, salary)
+        public QAEmployee(string fName, string lName, int age, Salary salary, string bugTrackingTool) : base(fName, lName, age, salary)
         {
-            BugTrackingTools = bugTrackingTools;
+            BugTrackingTool = bugTrackingTool;
         }
         
-        public override void DoYourJob()
+        public override string GetJobDescription()
         {
-            Console.WriteLine("QA specialist {0} {1} does manual testing using {2} bug tracking tools.", FirstName, LastName, BugTrackingTools);
+            return string.Format("QA specialist {0} {1} does manual testing using {2} bug tracking tools.", FirstName, LastName, BugTrackingTool);
         }
     }
 }

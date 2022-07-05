@@ -6,16 +6,16 @@ namespace ITCompany
 {
     class BAEmployee : Employee
     {
-        public string BATools { get; set; }
+        public string BATool { get; set; }
 
-        public BAEmployee(string fName, string lName, int age, int salary, string bATools) : base(fName, lName, age, salary)
+        public BAEmployee(string fName, string lName, int age, Salary salary, string bATool) : base(fName, lName, age, salary)
         {
-            BATools = bATools;
+            BATool = bATool;
         }
 
-        public override void DoYourJob()
+        public override string GetJobDescription()
         {
-            Console.WriteLine("Business Analyst {0} {1} uses {2} tools for working purposes.", FirstName, LastName, BATools);
+            return string.Format("Business Analyst {0} {1} uses {2} tool for working purposes.", FirstName, LastName, BATool);
         }
     }
 }

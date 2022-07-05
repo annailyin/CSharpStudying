@@ -8,14 +8,14 @@ namespace ITCompany
     {
         public string ProgrammingLanguage { get; set; }
 
-        public DevEmployee (string fName, string lName, int age, int salary, string pLanguage) : base (fName, lName, age, salary)
+        public DevEmployee (string fName, string lName, int age, Salary salary, string pLanguage) : base (fName, lName, age, salary)
         {
             ProgrammingLanguage = pLanguage;
         }
 
-        public override void DoYourJob()
+        public override string GetJobDescription()
         {
-            Console.WriteLine("Developer {0} {1} writes code in {2} language.", FirstName, LastName, ProgrammingLanguage);
+            return string.Format("Developer {0} {1} writes code in {2} language.", FirstName, LastName, ProgrammingLanguage);
         }
     }
 }

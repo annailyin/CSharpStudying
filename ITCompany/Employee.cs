@@ -6,13 +6,13 @@ namespace ITCompany
 {
     abstract class Employee : Person
     {
-        public int Salary { get; set; }
+        public Salary Salary { get; set; }
 
-        public Employee (string fName, string lName, int age, int salary) : base (fName, lName, age)
+        public Employee (string fName, string lName, int age, Salary salary) : base (fName, lName, age)
         {
             Salary = salary;
         }
 
-        public abstract void DoYourJob();
+        public abstract string GetJobDescription();
     }
 }
