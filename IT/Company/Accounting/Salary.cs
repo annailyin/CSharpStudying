@@ -1,4 +1,6 @@
-﻿namespace IT.Company.Accounting
+﻿using System;
+
+namespace IT.Company.Accounting
 {
     public sealed class Salary
     {

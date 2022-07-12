@@ -1,7 +1,5 @@
 ﻿using IT.Company.Staff;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace IT.Company
@@ -22,6 +20,21 @@ namespace IT.Company
         public override string ToString()
         {
             return $"You're welcome to our company {Name} with staff of {Employees.Count} employees!";
+        }
+
+        public string GetSortedEmployees(IComparer<Employee> comparer)
+        {
+            List<Employee> employees = new List<Employee>(Employees);
+            employees.Sort(comparer);
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Sorted employees:");
+            foreach (var employee in employees)
+            {
+                sb.AppendLine($"Employee {employee.FullName}.");
+            }
+
+            return sb.ToString();
         }
 
         public string GetEmployeesAbilitiesReport()

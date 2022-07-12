@@ -1,6 +1,7 @@
 ﻿using IT.Company;
 using IT.Company.Accounting;
 using IT.Company.Staff;
+using IT;
 using System;
 
 namespace ConsoleApp
@@ -15,9 +16,9 @@ namespace ConsoleApp
             company.Employees.Add(ceo);
             SoftwareDeveloper softwareDeveloper1 = new SoftwareDeveloper("Ivan Ivanov", new DateTime(2000, 10, 1), company, new Salary(3000, Currency.USD));
             company.Employees.Add(softwareDeveloper1);
-            SoftwareDeveloperLead softwareDeveloperLead1 = new SoftwareDeveloperLead("Bob Jonson", new DateTime(1986, 2, 10), company, new Salary(3500, Currency.USD));
+            SoftwareDeveloperLead softwareDeveloperLead1 = new SoftwareDeveloperLead("Bobber Jonson", new DateTime(1986, 2, 10), company, new Salary(3500, Currency.USD));
             company.Employees.Add(softwareDeveloperLead1);
-            BusinessAnalyst businessAnalyst1 = new BusinessAnalyst("Kate Miranovskaya", new DateTime(2001, 6, 7), company, new Salary(1500, Currency.USD));
+            BusinessAnalyst businessAnalyst1 = new BusinessAnalyst("Katarina Miranovskaya", new DateTime(2001, 6, 7), company, new Salary(1500, Currency.USD));
             company.Employees.Add(businessAnalyst1);
             BusinessAnalystLead businessAnalystLead1 = new BusinessAnalystLead("Anna Trubko", new DateTime(1990, 5, 20), company, new Salary(2000, Currency.USD));
             company.Employees.Add(businessAnalystLead1);
@@ -36,6 +37,9 @@ namespace ConsoleApp
             company.TaskBoard.Tasks.Add(employeeTask);
             softwareDeveloperLead1.AssignTaskTo(employeeTask, softwareDeveloper1);
 
+            Console.WriteLine(company.GetSortedEmployees(new EmployeeByFullNameLengthComparer()));
+            Console.WriteLine(company.GetSortedEmployees(new EmployeeBySalaryComparer()));
+            Console.WriteLine(company.GetSortedEmployees(new EmployeeByPositionComparer()));
             Console.WriteLine(company.GetEmployeesAbilitiesReport());
         }
     }
