@@ -29,6 +29,13 @@ namespace IT.Company
 
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"Sorted employees:");
+
+            return GetListOfEmployees(employees);
+        }
+
+        public string GetListOfEmployees(List<Employee> employees)
+        {
+            StringBuilder sb = new StringBuilder();
             foreach (var employee in employees)
             {
                 sb.AppendLine($"Employee {employee.FullName}.");
