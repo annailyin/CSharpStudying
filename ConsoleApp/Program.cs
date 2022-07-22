@@ -78,17 +78,18 @@ namespace ConsoleApp
 
             //LINQ
             var countEmployeesWriteCode = company.Employees
-                .Where(x => x is ICanWriteCode)
-                .Count();
+                .Count(x => x is ICanWriteCode);
             Console.WriteLine($"The quantity of employees who can write code: {countEmployeesWriteCode}.\n");
 
             var maxEmployeeSalary = company.Employees
                 .Max(x => x.Salary.Value);
             Console.WriteLine($"The maximum employee salary: {maxEmployeeSalary}.\n");
 
-            var employeeFullNameStartWithI = company.Employees
-                .Where(x => x.FullName.ToUpper().StartsWith("I")).OrderBy(x => x.FullName).ToList();
-            Console.WriteLine($"The list of Employees with FullName starts with I:\n{company.GetListOfEmployees(employeeFullNameStartWithI)}");
+            var employeesFullNameStartWithI = company.Employees
+                .Where(x => x.FullName.ToUpper().StartsWith("I"))
+                .OrderBy(x => x.FullName)
+                .ToList();
+            Console.WriteLine($"The list of Employees with FullName starts with I:\n{company.GetListOfEmployees(employeesFullNameStartWithI)}");
 
             var allSkillNames = company.Employees
                 .SelectMany(x => x.Skills)
@@ -104,24 +105,39 @@ namespace ConsoleApp
                 .GroupBy(x => x.GetType().Name)
                 .Select(g => new { EmployeePosition = g.Key, Count = g.Count() });
 
-            Console.WriteLine($"Position name and quantity of employees:\n{string.Join(", ", employeesByPositionCount)}.\n");
+            //Console.WriteLine($"Position name and quantity of employees:\n{string.Join(", ", employeesByPositionCount)}.\n");
+            Console.WriteLine($"Count of employees by position:\n");
+            foreach (var a in employeesByPositionCount)
+            {
+                Console.WriteLine($"{a.EmployeePosition} : {a.Count}");
+            }
 
             var averageEmployeeSalary = company.Employees.
                 Average(x => x.Salary.Value);
-            Console.WriteLine($"The average employee salary: {averageEmployeeSalary}.\n");
+            Console.WriteLine($"\nThe average employee salary: {averageEmployeeSalary}.\n");
 
             var averageEmployeeSalaryByPosition = company.Employees
                 .GroupBy(x => x.GetType().Name)
-                .Select(g => new { EmployeePosition = g.Key, AverageSalary = g.Average(s => s.Salary.Value) });
+                .Select(g => new { EmployeePosition = g.Key, AverageSalary = g.Average(s => s.Salary.Value) })
+                .ToList();
 
-            Console.WriteLine($"Position name and average salary:\n{string.Join(", ", averageEmployeeSalaryByPosition)}.\n");
+            //Console.WriteLine($"Position name and average salary:\n{string.Join(", ", averageEmployeeSalaryByPosition)}.\n");
 
-            var emp = company.Employees.Select(p => new
+            Console.WriteLine($"Average employee salary by position:\n");
+            foreach (var a in averageEmployeeSalaryByPosition)
             {
-                FullName = p.FullName,
-                Salary = p.Salary.Value
-            }).ToList();
-            Console.WriteLine($"List of employees and salary:\n{string.Join(", ", emp)}.\n");
+                Console.WriteLine($"{a.EmployeePosition} : {a.AverageSalary}");
+            }
+
+            var empSalary = company.Employees
+                .Select(p => new { FullName = p.FullName, Salary = p.Salary.Value })
+                .ToList();
+            Console.WriteLine($"\nList of employees and salary:\n");
+
+            foreach (var e in empSalary)
+            {
+                Console.WriteLine($"{e.FullName} : {e.Salary}");
+            }
         }
     }
 }
