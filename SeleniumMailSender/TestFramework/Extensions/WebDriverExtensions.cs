@@ -1,10 +1,9 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
 
-namespace GmailClient.Extensions
+namespace TestFramework.Extensions
 {
     public static class WebDriverExtensions
     {
@@ -17,10 +16,22 @@ namespace GmailClient.Extensions
             }
         }
 
+        public static IWebDriver WaitForFrameAndSwitchToIt(this IWebDriver webDriver, By selector, TimeSpan timeout)
+        {
+            var wait = new WebDriverWait(webDriver, timeout);
+            return wait.Until(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(selector));
+        }
+
         public static IWebElement WaitForElement(this IWebDriver webDriver, By selector, TimeSpan timeout)
         {
             var wait = new WebDriverWait(webDriver, timeout);
             return wait.Until(ExpectedConditions.ElementExists(selector));
+        }
+
+        public static IWebElement WaitForVisibleElement(this IWebDriver webDriver, By selector, TimeSpan timeout)
+        {
+            var wait = new WebDriverWait(webDriver, timeout);
+            return wait.Until(ExpectedConditions.ElementIsVisible(selector));
         }
 
         public static IWebElement WaitForClickableElement(this IWebDriver webDriver, By selector, TimeSpan timeout)

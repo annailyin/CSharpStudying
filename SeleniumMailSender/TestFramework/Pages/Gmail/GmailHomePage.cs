@@ -1,7 +1,7 @@
-﻿using GmailClient.Extensions;
+﻿using TestFramework.Extensions;
 using OpenQA.Selenium;
 
-namespace GmailClient.Pages.Gmail
+namespace TestFramework.Pages.Gmail
 {
     public class GmailHomePage : WebPageBase
     {

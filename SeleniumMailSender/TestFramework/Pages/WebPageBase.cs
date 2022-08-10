@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using System;
 
-namespace GmailClient.Pages
+namespace TestFramework.Pages
 {
     public abstract class WebPageBase
     {

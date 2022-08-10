@@ -1,7 +1,7 @@
-﻿using GmailClient.Extensions;
+﻿using TestFramework.Extensions;
 using OpenQA.Selenium;
 
-namespace GmailClient.Pages.Gmail
+namespace TestFramework.Pages.Gmail
 {
     public class GmailLoginPage : WebPageBase
     {
@@ -20,7 +20,7 @@ namespace GmailClient.Pages.Gmail
         {
             WebDriver.WaitForElement(UsernameInputSelector, DefaultTimeout).SendKeys(username);
             WebDriver.WaitForClickableElement(UsernameSubmitButtonSelector, DefaultTimeout).Click();
-            WebDriver.WaitForElement(PasswordInputSelector, DefaultTimeout).SendKeys(password);
+            WebDriver.WaitForVisibleElement(PasswordInputSelector, DefaultTimeout).SendKeys(password);
             WebDriver.WaitForClickableElement(PasswordSubmitButtonSelector, DefaultTimeout).Click();
             WebDriver.WaitUntilPageIsLoaded(GmailMailBoxPage.BaseURL, DefaultTimeout);
             return new GmailMailBoxPage(WebDriver);
