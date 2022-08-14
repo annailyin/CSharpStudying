@@ -1,5 +1,5 @@
-﻿using TestFramework.Extensions;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using TestFramework.Extensions;
 
 namespace TestFramework.Pages.Gmail
 {

@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System.Linq;
 using TestFramework.Extensions;
 
 namespace TestFramework.Pages.MailRu
